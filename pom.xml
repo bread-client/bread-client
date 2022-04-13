@@ -43,8 +43,22 @@
                     <groupId>org.openjfx</groupId>
                     <artifactId>javafx-maven-plugin</artifactId>
                     <version>0.0.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.zenjava</groupId>
+                    <artifactId>javafx-maven-plugin</artifactId>
+                    <version>8.8.3</version>
                     <configuration>
-                        <mainClass>HelloFX</mainClass>
+                        <mainClass>your.package.with.Launcher</mainClass>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.zenjava</groupId>
+                    <artifactId>javafx-maven-plugin</artifactId>
+                    <version>8.8.3</version>
+                    <configuration>
+                        <vendor>BreadClient</vendor>
+                        <mainClass>fr.breadclient.breadclient.BreadClient</mainClass>
                     </configuration>
                 </plugin>
             </plugins>
