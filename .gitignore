@@ -18,10 +18,13 @@
 *.zip
 *.tar.gz
 *.rar
+<<<<<<< HEAD
 *.iml
 *.MF
 /out
 /.idea
+=======
+>>>>>>> 61fc102164de2b264acb0511cca9b88e2850e1f1
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
