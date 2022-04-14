@@ -11,8 +11,9 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 public abstract class Panel implements IPanel, IMovable, ITakePanel {
+
     protected final ILogger logger;
-    protected GridPane layout = new GridPane();
+    protected final GridPane layout = new GridPane();
     protected PanelManager panelManager;
 
     public Panel() {
@@ -20,9 +21,9 @@ public abstract class Panel implements IPanel, IMovable, ITakePanel {
     }
 
     @Override
-    public void Init(PanelManager panelManager) {
+    public void init(PanelManager panelManager) {
         this.panelManager = panelManager;
-        setCanTakeAllSize(this.layout);
+        this.setCanTakeAllSize(this.layout);
     }
 
     @Override
@@ -32,7 +33,7 @@ public abstract class Panel implements IPanel, IMovable, ITakePanel {
 
     @Override
     public void onShow() {
-        FadeTransition transition = new FadeTransition(Duration.seconds(1), this.layout);
+        final FadeTransition transition = new FadeTransition(Duration.seconds(1), this.layout);
         transition.setFromValue(0);
         transition.setToValue(1);
         transition.setAutoReverse(true);

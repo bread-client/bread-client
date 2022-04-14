@@ -3,15 +3,16 @@ package fr.breadclient.breadclient.ui.panels.pages;
 import fr.breadclient.breadclient.Launcher;
 import fr.breadclient.breadclient.ui.PanelManager;
 import fr.breadclient.breadclient.ui.panel.Panel;
-import fr.theshark34.openlauncherlib.util.Saver;
+import fr.breadclient.breadclientapi.files.KeyValueConfiguration;
 import javafx.geometry.HPos;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
 public class Login extends Panel {
-    GridPane loginCard = new GridPane();
 
-    Saver saver = Launcher.getInstance().getSaver();
+    private final GridPane loginCard = new GridPane();
+
+    private final KeyValueConfiguration config = Launcher.getInstance().getKeyValueConfiguration();
 
     @Override
     public String getName() {
@@ -24,28 +25,26 @@ public class Login extends Panel {
     }
 
     @Override
-    public void Init(PanelManager panelManager) {
-        super.Init(panelManager);
+    public void init(PanelManager panelManager) {
+        super.init(panelManager);
 
         this.layout.getStyleClass().add("login-layout");
 
-        ColumnConstraints columnConstraints = new ColumnConstraints();
+        final ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setHalignment(HPos.RIGHT);
         columnConstraints.setMinWidth(564);
         columnConstraints.setMaxWidth(564);
         this.layout.getColumnConstraints().addAll(columnConstraints, new ColumnConstraints());
-        this.layout.add(loginCard, 0, 0);
+        this.layout.add(this.loginCard, 0, 0);
 
-        GridPane backImage = new GridPane();
-        setCanTakeAllSize(backImage);
+        final GridPane backImage = new GridPane();
+        this.setCanTakeAllSize(backImage);
         backImage.getStyleClass().add("login-back-image");
         this.layout.add(backImage, 1, 0);
-
-        setCanTakeAllSize(this.layout);
-        loginCard.getStyleClass().add("login-card");
-        setRight(loginCard);
-        setCenterH(loginCard);
-        setCenterV(loginCard);
-
+        this.setCanTakeAllSize(this.layout);
+        this.loginCard.getStyleClass().add("login-card");
+        this.setRight(this.loginCard);
+        this.setCenterH(this.loginCard);
+        this.setCenterV(this.loginCard);
     }
 }

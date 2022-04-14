@@ -14,6 +14,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
 public class TopBar extends Panel {
+
     private GridPane topBar;
 
     @Override
@@ -27,35 +28,35 @@ public class TopBar extends Panel {
     }
 
     @Override
-    public void Init(PanelManager panelManager) {
-        super.Init(panelManager);
+    public void init(PanelManager panelManager) {
+        super.init(panelManager);
         this.topBar = this.layout;
         this.layout.setStyle("-fx-background-color: #2e2e2e; -fx-blur-radius: 50;");
 
-        ImageView imageView = new ImageView();
+        final ImageView imageView = new ImageView();
         imageView.setImage(new Image("images/icons/bread-client-icon.png"));
         imageView.setPreserveRatio(true);
         imageView.setFitWidth(25);
-        setLeft(imageView);
+        this.setLeft(imageView);
         this.layout.getChildren().add(imageView);
 
-        Label title = new Label("Bread Client - Beta version - 0.1");
+        final Label title = new Label("Bread Client - Beta version - 0.1");
         title.setFont(Font.font("Arial", FontWeight.NORMAL, FontPosture.REGULAR, 16f));
         title.setStyle("-fx-text-fill: #ffffff;");
-        setCenterH(title);
+        this.setCenterH(title);
         this.layout.getChildren().add(title);
 
-        GridPane topBarButtons = new GridPane();
+        final GridPane topBarButtons = new GridPane();
         topBarButtons.setMinWidth(100d);
         topBarButtons.setMaxWidth(100d);
-        setCanTakeAllSize(topBarButtons);
-        setRight(topBarButtons);
+        this.setCanTakeAllSize(topBarButtons);
+        this.setRight(topBarButtons);
         this.layout.getChildren().add(topBarButtons);
 
-        FontAwesomeIconView closeButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_CLOSE);
-        FontAwesomeIconView fullScreenButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MAXIMIZE);
-        FontAwesomeIconView minimizeButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MINIMIZE);
-        setCanTakeAllWidth(closeButton, fullScreenButton, minimizeButton);
+        final FontAwesomeIconView closeButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_CLOSE);
+        final FontAwesomeIconView fullScreenButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MAXIMIZE);
+        final FontAwesomeIconView minimizeButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MINIMIZE);
+        this.setCanTakeAllWidth(closeButton, fullScreenButton, minimizeButton);
 
         closeButton.setFill(Color.WHITE);
         closeButton.setOpacity(0.7f);

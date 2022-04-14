@@ -14,8 +14,6 @@ import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.util.Objects;
-
 public class PanelManager {
 
     private final Launcher launcher;
@@ -42,11 +40,10 @@ public class PanelManager {
 
         this.layout = new GridPane();
 
-        if (Platform.isOnLinux()) {
+        if(Platform.isOnLinux()) {
             Scene scene = new Scene(this.layout);
             this.stage.setScene(scene);
         } else {
-
             BorderlessScene scene = new BorderlessScene(this.stage, StageStyle.UNDECORATED, this.layout);
             scene.setResizable(true);
             scene.setMoveControl(this.topBar.getLayout());
@@ -60,8 +57,7 @@ public class PanelManager {
             topPaneConstraint.setMaxHeight(25);
             this.layout.getRowConstraints().addAll(topPaneConstraint, new RowConstraints());
             this.layout.add(this.topBar.getLayout(), 0, 0);
-            topBar.Init(this);
-
+            topBar.init(this);
         }
 
         this.layout.add(contentPanel, 0, 1);
@@ -74,20 +70,31 @@ public class PanelManager {
     public void showPanel(IPanel panel) {
         this.contentPanel.getChildren().clear();
         this.contentPanel.getChildren().add(panel.getLayout());
-        if (panel.getStyleSheetPath() != null) {
+        if(panel.getStyleSheetPath() != null) {
             this.stage.getScene().getStylesheets().clear();
             this.stage.getScene().getStylesheets().add(panel.getStyleSheetPath());
         }
-        panel.Init(this);
+        panel.init(this);
         panel.onShow();
-    }
-
-    public Stage getStage() {
-        return stage;
     }
 
     public Launcher getLauncher() {
         return launcher;
     }
 
+    public Stage getStage() {
+        return stage;
+    }
+
+    public GridPane getLayout() {
+        return layout;
+    }
+
+    public TopBar getTopBar() {
+        return topBar;
+    }
+
+    public GridPane getContentPanel() {
+        return contentPanel;
+    }
 }
