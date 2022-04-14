@@ -16,7 +16,7 @@ import java.io.File;
 
 public class Launcher extends Application {
 
-    private static final Launcher INSTANCE = new Launcher();
+    private static Launcher INSTANCE;
 
     private PanelManager panelManager;
     private final ILogger logger;
@@ -25,6 +25,7 @@ public class Launcher extends Application {
     private final KeyValueConfiguration keyValueConfiguration = KeyValueConfiguration.load(keyValueDocument, KeyValueSeparator.EQUAL);
 
     public Launcher() {
+        INSTANCE = new Launcher();
         this.logger = new Logger("[BREAD-CLIENT]", new File(this.launcherDirectory, "bread-client.logs").toPath());
         if(!launcherDirectory.exists())
             this.launcherDirectory.mkdir();
