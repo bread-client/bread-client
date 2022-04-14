@@ -23,6 +23,7 @@
 *.MF
 /out
 /.idea
+/.gradle
 =======
 >>>>>>> 61fc102164de2b264acb0511cca9b88e2850e1f1
 
