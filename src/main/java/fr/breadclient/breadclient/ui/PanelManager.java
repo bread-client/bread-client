@@ -4,10 +4,12 @@ import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import fr.breadclient.breadclient.Launcher;
 import fr.breadclient.breadclient.ui.panel.IPanel;
 import fr.breadclient.breadclient.ui.panels.partials.TopBar;
+import fr.flowarg.flowcompat.Platform;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,26 +42,42 @@ public class PanelManager {
 
         this.layout = new GridPane();
 
-        BorderlessScene scene = new BorderlessScene(this.stage, StageStyle.UNDECORATED, this.layout);
-        scene.setResizable(true);
-        scene.setMoveControl(this.topBar.getLayout());
-        scene.removeDefaultCSS();
+        if (Platform.isOnLinux()) {
+            Scene scene = new Scene(this.layout);
+            this.stage.setScene(scene);
+        } else {
 
-        this.stage.setScene(scene);
+            BorderlessScene scene = new BorderlessScene(this.stage, StageStyle.UNDECORATED, this.layout);
+            scene.setResizable(true);
+            scene.setMoveControl(this.topBar.getLayout());
+            scene.removeDefaultCSS();
+
+            this.stage.setScene(scene);
+
+            RowConstraints topPaneConstraint = new RowConstraints();
+            topPaneConstraint.setValignment(VPos.TOP);
+            topPaneConstraint.setMinHeight(25);
+            topPaneConstraint.setMaxHeight(25);
+            this.layout.getRowConstraints().addAll(topPaneConstraint, new RowConstraints());
+            this.layout.add(this.topBar.getLayout(), 0, 0);
+            topBar.Init(this);
+
+        }
+
+        this.layout.add(contentPanel, 0, 1);
+        GridPane.setVgrow(this.contentPanel, Priority.ALWAYS);
+        GridPane.setHgrow(this.contentPanel, Priority.ALWAYS);
+
         this.stage.show();
-
-        RowConstraints topPaneConstraint = new RowConstraints();
-        topPaneConstraint.setValignment(VPos.TOP);
-        topPaneConstraint.setMinHeight(25);
-        topPaneConstraint.setMaxHeight(25);
-        this.layout.getRowConstraints().addAll(topPaneConstraint, new RowConstraints());
-        this.layout.add(this.topBar.getLayout(), 0, 0);
-        this.topBar.Init(this);
     }
 
     public void showPanel(IPanel panel) {
         this.contentPanel.getChildren().clear();
         this.contentPanel.getChildren().add(panel.getLayout());
+        if (panel.getStyleSheetPath() != null) {
+            this.stage.getScene().getStylesheets().clear();
+            this.stage.getScene().getStylesheets().add(panel.getStyleSheetPath());
+        }
         panel.Init(this);
         panel.onShow();
     }

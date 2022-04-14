@@ -24,13 +24,13 @@ repositories {
 
 dependencies {
     implementation 'fr.litarvan:openauth:1+'
-    implementation 'de.jensd:fontawesomefx-fontawesome:4+'
+    implementation 'de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2'
 
-    implementation 'fr.flowarg:flowupdater:1.5+'
-    implementation 'fr.flowarg:openlauncherlib:3+'
+    implementation 'fr.flowarg:flowupdater:1.6.0'
+    implementation 'fr.flowarg:openlauncherlib:3.2.4'
 
     implementation 'com.github.goxr3plus:FX-BorderlessScene:4+'
-    implementation 'com.github.oshi:oshi-core:5+'
+    implementation 'com.github.oshi:oshi-core:6.1.5'
 }
 
 javafx {
