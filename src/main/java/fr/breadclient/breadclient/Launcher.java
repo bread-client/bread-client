@@ -30,6 +30,14 @@ public class Launcher extends Application {
             this.launcherDirectory.mkdir();
     }
 
+    public void start(Stage stage) throws Exception {
+        this.logger.info("Starting Bread Client");
+        this.panelManager = new PanelManager(this, stage);
+        this.panelManager.init();
+
+        this.panelManager.showPanel(new Login());
+    }
+
     public static Launcher getInstance() {
         return INSTANCE;
     }
@@ -52,13 +60,5 @@ public class Launcher extends Application {
 
     public KeyValueConfiguration getKeyValueConfiguration() {
         return keyValueConfiguration;
-    }
-
-    public void start(Stage stage) throws Exception {
-        this.logger.info("Starting Bread Client");
-        this.panelManager = new PanelManager(this, stage);
-        this.panelManager.init();
-
-        this.panelManager.showPanel(new Login());
     }
 }
