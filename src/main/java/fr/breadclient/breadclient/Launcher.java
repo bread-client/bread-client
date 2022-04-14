@@ -6,9 +6,9 @@ import fr.breadclient.breadclient.utils.Helpers;
 import fr.breadclient.breadclientapi.files.KeyValueConfiguration;
 import fr.breadclient.breadclientapi.files.KeyValueDocument;
 import fr.breadclient.breadclientapi.utils.KeyValueSeparator;
+import fr.breadclient.breadclientapi.utils.StandardFileCreationType;
 import fr.flowarg.flowlogger.ILogger;
 import fr.flowarg.flowlogger.Logger;
-import fr.theshark34.openlauncherlib.util.Saver;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -21,8 +21,8 @@ public class Launcher extends Application {
     private PanelManager panelManager;
     private final ILogger logger;
     private final File launcherDirectory = Helpers.generateGamePath("bread-client");
-    private final KeyValueDocument keyValueDocument = new KeyValueDocument("path", "name");
-    private final KeyValueConfiguration keyValueConfiguration = KeyValueConfiguration.load(keyValueDocument, KeyValueSeparator.EQUAL);
+    //private final KeyValueDocument keyValueDocument = new KeyValueDocument("path", "name", StandardFileCreationType.ONLY_WANTED_FILE);
+    //private final KeyValueConfiguration keyValueConfiguration = KeyValueConfiguration.load(keyValueDocument, KeyValueSeparator.EQUAL);
 
     public Launcher() {
         INSTANCE = new Launcher();
@@ -35,7 +35,6 @@ public class Launcher extends Application {
         this.logger.info("Starting Bread Client");
         this.panelManager = new PanelManager(this, stage);
         this.panelManager.init();
-
         this.panelManager.showPanel(new Login());
     }
 
@@ -55,6 +54,7 @@ public class Launcher extends Application {
         return launcherDirectory;
     }
 
+    /*
     public KeyValueDocument getKeyValueDocument() {
         return keyValueDocument;
     }
@@ -62,4 +62,5 @@ public class Launcher extends Application {
     public KeyValueConfiguration getKeyValueConfiguration() {
         return keyValueConfiguration;
     }
+     */
 }

@@ -41,17 +41,17 @@ public class PanelManager {
         this.layout = new GridPane();
 
         if(Platform.isOnLinux()) {
-            Scene scene = new Scene(this.layout);
+            final Scene scene = new Scene(this.layout);
             this.stage.setScene(scene);
         } else {
-            BorderlessScene scene = new BorderlessScene(this.stage, StageStyle.UNDECORATED, this.layout);
+            final BorderlessScene scene = new BorderlessScene(this.stage, StageStyle.UNDECORATED, this.layout);
             scene.setResizable(true);
             scene.setMoveControl(this.topBar.getLayout());
             scene.removeDefaultCSS();
 
             this.stage.setScene(scene);
 
-            RowConstraints topPaneConstraint = new RowConstraints();
+            final RowConstraints topPaneConstraint = new RowConstraints();
             topPaneConstraint.setValignment(VPos.TOP);
             topPaneConstraint.setMinHeight(25);
             topPaneConstraint.setMaxHeight(25);

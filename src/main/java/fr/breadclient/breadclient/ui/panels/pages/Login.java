@@ -12,7 +12,7 @@ public class Login extends Panel {
 
     private final GridPane loginCard = new GridPane();
 
-    private final KeyValueConfiguration config = Launcher.getInstance().getKeyValueConfiguration();
+    //private final KeyValueConfiguration config = Launcher.getInstance().getKeyValueConfiguration();
 
     @Override
     public String getName() {
