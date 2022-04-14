@@ -1,5 +1,6 @@
 package fr.breadclient.breadclient.ui;
 
+import com.goxr3plus.fxborderlessscene.borderless.BorderlessScene;
 import fr.breadclient.breadclient.Launcher;
 import fr.breadclient.breadclient.ui.panel.IPanel;
 import fr.breadclient.breadclient.ui.panels.partials.TopBar;
@@ -39,7 +40,11 @@ public class PanelManager {
 
         this.layout = new GridPane();
 
-        Scene scene = new Scene(this.layout);
+        BorderlessScene scene = new BorderlessScene(this.stage, StageStyle.UNDECORATED, this.layout);
+        scene.setResizable(true);
+        scene.setMoveControl(this.topBar.getLayout());
+        scene.removeDefaultCSS();
+
         this.stage.setScene(scene);
         this.stage.show();
 
