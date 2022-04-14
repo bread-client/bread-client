@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
-public abstract class Panel implements IPanel, IMovable, ItakePanel {
+public abstract class Panel implements IPanel, IMovable, ITakePanel {
     protected final ILogger logger;
     protected GridPane layout = new GridPane();
     protected PanelManager panelManager;
