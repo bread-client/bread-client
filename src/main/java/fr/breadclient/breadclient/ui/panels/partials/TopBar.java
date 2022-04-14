@@ -17,6 +17,11 @@ public class TopBar extends Panel {
     private GridPane topBar;
 
     @Override
+    public String getStyleSheetPath() {
+        return null;
+    }
+
+    @Override
     public String getName() {
         return "TopBar";
     }

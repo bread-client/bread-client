@@ -40,6 +40,11 @@ public abstract class Panel implements IPanel, IMovable, ItakePanel {
     }
 
     @Override
+    public String getStyleSheetPath() {
+        return null;
+    }
+
+    @Override
     public abstract String getName();
 
     @Override
