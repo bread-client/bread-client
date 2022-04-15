@@ -31,7 +31,7 @@ public class App extends Panel {
 
     Button homeBtn, settingsBtn;
 
-    Saver saver = Launcher.getInstance().getSaver();
+    Saver saver = Launcher.getINSTANCE().getSaver();
 
     @Override
     public String getName() {
@@ -110,7 +110,7 @@ public class App extends Panel {
 
         sidemenu.getChildren().addAll(homeBtn, settingsBtn);
 
-        if (Launcher.getInstance().getAuthInfos() != null) {
+        if (Launcher.getINSTANCE().getAuthInfos() != null) {
             // Pseudo + avatar
             GridPane userPane = new GridPane();
             setCanTakeAllWidth(userPane);
@@ -122,7 +122,7 @@ public class App extends Panel {
             String avatarUrl = "https://minotar.net/avatar/" + (
                     saver.get("offline-username") != null ?
                             "MHF_Steve.png" :
-                            Launcher.getInstance().getAuthInfos().getUuid() + ".png"
+                            Launcher.getINSTANCE().getAuthInfos().getUuid() + ".png"
             );
             ImageView avatarView = new ImageView();
             Image avatarImg = new Image(avatarUrl);
@@ -135,7 +135,7 @@ public class App extends Panel {
             avatarView.setTranslateX(15d);
             userPane.getChildren().add(avatarView);
 
-            Label usernameLabel = new Label(Launcher.getInstance().getAuthInfos().getUsername());
+            Label usernameLabel = new Label(Launcher.getINSTANCE().getAuthInfos().getUsername());
             usernameLabel.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 25f));
             setCanTakeAllSize(usernameLabel);
             setCenterV(usernameLabel);
@@ -163,7 +163,7 @@ public class App extends Panel {
                 saver.remove("msAccessToken");
                 saver.remove("msRefreshToken");
                 saver.save();
-                Launcher.getInstance().setAuthInfos(null);
+                Launcher.getINSTANCE().setAuthInfos(null);
                 this.panelManager.showPanel(new Login());
             });
             userPane.getChildren().add(logoutBtn);

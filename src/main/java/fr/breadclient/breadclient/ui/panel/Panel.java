@@ -16,7 +16,7 @@ public abstract class Panel implements IPanel, IMovable, ITakePLace {
     protected PanelManager panelManager;
 
     public Panel() {
-        this.logger = Launcher.getInstance().getLogger();
+        this.logger = Launcher.getINSTANCE().getLogger();
     }
 
     @Override

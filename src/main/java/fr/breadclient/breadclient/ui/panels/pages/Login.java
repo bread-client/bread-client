@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class Login extends Panel {
     GridPane loginCard = new GridPane();
 
-    Saver saver = Launcher.getInstance().getSaver();
+    Saver saver = Launcher.getINSTANCE().getSaver();
     AtomicBoolean offlineAuth = new AtomicBoolean(false);
 
     TextField userField = new TextField();
@@ -221,7 +221,7 @@ public class Login extends Panel {
                         response.getSelectedProfile().getId()
                 );
 
-                Launcher.getInstance().setAuthInfos(infos);
+                Launcher.getINSTANCE().setAuthInfos(infos);
 
                 this.logger.info("Hello " + infos.getUsername());
 
@@ -241,7 +241,7 @@ public class Login extends Panel {
             );
             saver.set("offline-username", infos.getUsername());
             saver.save();
-            Launcher.getInstance().setAuthInfos(infos);
+            Launcher.getINSTANCE().setAuthInfos(infos);
 
             this.logger.info("Hello " + infos.getUsername());
 
@@ -253,7 +253,7 @@ public class Login extends Panel {
         MicrosoftAuthenticator authenticator = new MicrosoftAuthenticator();
         authenticator.loginWithAsyncWebview().whenComplete((response, error) -> {
             if (error != null) {
-                Launcher.getInstance().getLogger().err(error.toString());
+                Launcher.getINSTANCE().getLogger().err(error.toString());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setContentText(error.getMessage());
@@ -264,7 +264,7 @@ public class Login extends Panel {
             saver.set("msAccessToken", response.getAccessToken());
             saver.set("msRefreshToken", response.getRefreshToken());
             saver.save();
-            Launcher.getInstance().setAuthInfos(new AuthInfos(
+            Launcher.getINSTANCE().setAuthInfos(new AuthInfos(
                     response.getProfile().getName(),
                     response.getAccessToken(),
                     response.getProfile().getId()

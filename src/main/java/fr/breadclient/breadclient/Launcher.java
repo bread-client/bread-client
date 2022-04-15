@@ -23,16 +23,16 @@ import java.nio.file.Path;
 import java.util.UUID;
 
 public class Launcher extends Application {
-    private static Launcher instance;
+    private static Launcher INSTANCE;
     private final ILogger logger;
-    private final Path launcherDir = GameDirGenerator.createGameDir("launcher-fx", true);
+    private final Path launcherDir = GameDirGenerator.createGameDir("bread-client", true);
     private final Saver saver;
     private PanelManager panelManager;
     private AuthInfos authInfos = null;
 
     public Launcher() {
-        instance = this;
-        this.logger = new Logger("[LauncherFX]", this.launcherDir.resolve("launcher.log"));
+        INSTANCE = this;
+        this.logger = new Logger("[BreadClient]", this.launcherDir.resolve("launcher.log"));
         if (!this.launcherDir.toFile().exists()) {
             if (!this.launcherDir.toFile().mkdir()) {
                 this.logger.err("Unable to create launcher folder");
@@ -43,8 +43,8 @@ public class Launcher extends Application {
         saver.load();
     }
 
-    public static Launcher getInstance() {
-        return instance;
+    public static Launcher getINSTANCE() {
+        return INSTANCE;
     }
 
     @Override

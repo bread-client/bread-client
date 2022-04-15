@@ -32,7 +32,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class Home extends ContentPanel {
-    private final Saver saver = Launcher.getInstance().getSaver();
+    private final Saver saver = Launcher.getINSTANCE().getSaver();
     GridPane boxPane = new GridPane();
     ProgressBar progressBar = new ProgressBar();
     Label stepLabel = new Label();
@@ -132,7 +132,7 @@ public class Home extends ContentPanel {
             public void onFileDownloaded(Path path) {
                 Platform.runLater(() -> {
                     String p = path.toString();
-                    fileLabel.setText("..." + p.replace(Launcher.getInstance().getLauncherDir().toFile().getAbsolutePath(), ""));
+                    fileLabel.setText("..." + p.replace(Launcher.getINSTANCE().getLauncherDir().toFile().getAbsolutePath(), ""));
                 });
             }
         };
@@ -157,15 +157,15 @@ public class Home extends ContentPanel {
             final FlowUpdater updater = new FlowUpdater.FlowUpdaterBuilder()
                     .withVanillaVersion(vanillaVersion)
                     .withForgeVersion(forge)
-                    .withLogger(Launcher.getInstance().getLogger())
+                    .withLogger(Launcher.getINSTANCE().getLogger())
                     .withProgressCallback(callback)
                     .withUpdaterOptions(options)
                     .build();
 
-            updater.update(Launcher.getInstance().getLauncherDir());
+            updater.update(Launcher.getINSTANCE().getLauncherDir());
             this.startGame(updater.getVanillaVersion().getName());
         } catch (Exception exception) {
-            Launcher.getInstance().getLogger().err(exception.toString());
+            Launcher.getINSTANCE().getLogger().err(exception.toString());
             exception.printStackTrace();
             Platform.runLater(() -> panelManager.getStage().show());
         }
@@ -180,7 +180,7 @@ public class Home extends ContentPanel {
         );
 
         try {
-            ExternalLaunchProfile profile = MinecraftLauncher.createExternalProfile(infos, GameFolder.FLOW_UPDATER, Launcher.getInstance().getAuthInfos());
+            ExternalLaunchProfile profile = MinecraftLauncher.createExternalProfile(infos, GameFolder.FLOW_UPDATER, Launcher.getINSTANCE().getAuthInfos());
             profile.getVmArgs().add(this.getRamArgsFromSaver());
             ExternalLauncher launcher = new ExternalLauncher(profile);
 
@@ -198,7 +198,7 @@ public class Home extends ContentPanel {
             });
         } catch (Exception exception) {
             exception.printStackTrace();
-            Launcher.getInstance().getLogger().err(exception.toString());
+            Launcher.getINSTANCE().getLogger().err(exception.toString());
         }
     }
 
