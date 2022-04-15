@@ -12,11 +12,11 @@ import javafx.util.Duration;
 
 public abstract class Panel implements IPanel, IMovable, ITakePLace {
     protected final ILogger logger;
-    protected GridPane layout = new GridPane();
+    protected final GridPane layout = new GridPane();
     protected PanelManager panelManager;
 
     public Panel() {
-        this.logger = Launcher.getINSTANCE().getLogger();
+        this.logger = Launcher.getInstance().getLogger();
     }
 
     @Override
@@ -80,5 +80,13 @@ public abstract class Panel implements IPanel, IMovable, ITakePLace {
     @Override
     public void setCenterV(Node node) {
         GridPane.setValignment(node, VPos.CENTER);
+    }
+
+    public ILogger getLogger() {
+        return logger;
+    }
+
+    public PanelManager getPanelManager() {
+        return panelManager;
     }
 }
