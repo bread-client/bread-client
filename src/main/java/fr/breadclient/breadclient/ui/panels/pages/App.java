@@ -79,11 +79,8 @@ public class App extends Panel {
          * Side menu
          */
         // Titre
-<<<<<<< HEAD
+
         Label title = new Label("Bread Client");
-=======
-        final Label title = new Label("JavaFX Launcher");
->>>>>>> edb11bbaba2e6da815600d419a2ae4c854fcb625
         title.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 30f));
         title.getStyleClass().add("home-title");
         setCenterH(title);

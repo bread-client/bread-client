@@ -70,28 +70,18 @@ public class Login extends Panel {
         this.layout.add(bgImage, 1, 0);
 
         // Login card
-<<<<<<< HEAD
-        setCanTakeAllSize(this.layout);
-        loginCard.getStyleClass().add("login-card");
-        setRight(loginCard);
-        setCenterH(loginCard);
-        setCenterV(loginCard);
-=======
+
         this.setCanTakeAllSize(this.layout);
         this.loginCard.getStyleClass().add("login-card");
         this.setLeft(this.loginCard);
         this.setCenterH(this.loginCard);
         this.setCenterV(this.loginCard);
->>>>>>> edb11bbaba2e6da815600d419a2ae4c854fcb625
 
         /*
          * Login sidebar
          */
-<<<<<<< HEAD
-        Label title = new Label("Bread Client");
-=======
-        final Label title = new Label("JavaFX Launcher");
->>>>>>> edb11bbaba2e6da815600d419a2ae4c854fcb625
+
+        final Label title = new Label("Bread Client");
         title.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 30f));
         title.getStyleClass().add("login-title");
         this.setCenterH(title);
