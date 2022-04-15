@@ -1,5 +1,6 @@
 .box-pane {
     -fx-background-color: #1e1e1e;
+    -fx-alignment: bottom;
 }
 
 .play-btn {

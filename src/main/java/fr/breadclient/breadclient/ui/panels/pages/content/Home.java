@@ -54,12 +54,13 @@ public class Home extends ContentPanel {
         super.init(panelManager);
 
         RowConstraints rowConstraints = new RowConstraints();
-        rowConstraints.setValignment(VPos.CENTER);
+        rowConstraints.setValignment(VPos.BOTTOM);
         rowConstraints.setMinHeight(75);
         rowConstraints.setMaxHeight(75);
         this.layout.getRowConstraints().addAll(rowConstraints, new RowConstraints());
         boxPane.getStyleClass().add("box-pane");
         setCanTakeAllSize(boxPane);
+        setBottom(boxPane);
         boxPane.setPadding(new Insets(20));
         this.layout.add(boxPane, 0, 0);
         this.layout.getStyleClass().add("home-layout");
