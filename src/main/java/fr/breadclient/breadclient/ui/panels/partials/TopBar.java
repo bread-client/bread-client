@@ -1,9 +1,9 @@
 package fr.breadclient.breadclient.ui.panels.partials;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import fr.breadclient.breadclient.ui.PanelManager;
 import fr.breadclient.breadclient.ui.panel.Panel;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,13 +14,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 
 public class TopBar extends Panel {
-
     private GridPane topBar;
-
-    @Override
-    public String getStyleSheetPath() {
-        return null;
-    }
 
     @Override
     public String getName() {
@@ -28,62 +22,75 @@ public class TopBar extends Panel {
     }
 
     @Override
+    public String getStylesheetPath() {
+        return null;
+    }
+
+    @Override
     public void init(PanelManager panelManager) {
         super.init(panelManager);
         this.topBar = this.layout;
-        this.layout.setStyle("-fx-background-color: #2e2e2e; -fx-blur-radius: 50;");
+        this.layout.setStyle("-fx-background-color: rgb(35, 40, 40);");
+        setCanTakeAllWidth(this.topBar);
 
-        final ImageView imageView = new ImageView();
-        imageView.setImage(new Image("images/icons/bread-client-icon.png"));
+        /*
+         * TopBar separation
+         */
+        // TopBar: left side
+        ImageView imageView = new ImageView();
+        imageView.setImage(new Image("images/icon.png"));
         imageView.setPreserveRatio(true);
-        imageView.setFitWidth(25);
-        this.setLeft(imageView);
+        imageView.setFitHeight(25);
+        setLeft(imageView);
         this.layout.getChildren().add(imageView);
 
-        final Label title = new Label("Bread Client - Beta version - 0.1");
-        title.setFont(Font.font("Arial", FontWeight.NORMAL, FontPosture.REGULAR, 16f));
-        title.setStyle("-fx-text-fill: #ffffff;");
-        this.setCenterH(title);
+        // TopBar: center
+        Label title = new Label("JavaFx Launcher");
+        title.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 18f));
+        title.setStyle("-fx-text-fill: white;");
+        setCenterH(title);
         this.layout.getChildren().add(title);
 
-        final GridPane topBarButtons = new GridPane();
-        topBarButtons.setMinWidth(100d);
-        topBarButtons.setMaxWidth(100d);
-        this.setCanTakeAllSize(topBarButtons);
-        this.setRight(topBarButtons);
-        this.layout.getChildren().add(topBarButtons);
+        // TopBar: right side
+        GridPane topBarButton = new GridPane();
+        topBarButton.setMinWidth(100d);
+        topBarButton.setMaxWidth(100d);
+        setCanTakeAllSize(topBarButton);
+        setRight(topBarButton);
+        this.layout.getChildren().add(topBarButton);
 
-        final FontAwesomeIconView closeButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_CLOSE);
-        final FontAwesomeIconView fullScreenButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MAXIMIZE);
-        final FontAwesomeIconView minimizeButton = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MINIMIZE);
-        this.setCanTakeAllWidth(closeButton, fullScreenButton, minimizeButton);
+        /*
+         * TopBar buttons configuration
+         */
+        FontAwesomeIconView closeBtn = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_CLOSE);
+        FontAwesomeIconView fullscreenBtn = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MAXIMIZE);
+        FontAwesomeIconView minimizeBtn = new FontAwesomeIconView(FontAwesomeIcon.WINDOW_MINIMIZE);
+        setCanTakeAllWidth(closeBtn, fullscreenBtn, minimizeBtn);
 
-        closeButton.setFill(Color.WHITE);
-        closeButton.setOpacity(0.7f);
-        closeButton.setSize("16px");
-        closeButton.setOnMouseEntered(event -> closeButton.setOpacity(1f));
-        closeButton.setOnMouseExited(event -> closeButton.setOpacity(0.7f));
-        closeButton.setOnMouseClicked(event -> System.exit(0));
-        closeButton.setTranslateX(70f);
+        closeBtn.setFill(Color.WHITE);
+        closeBtn.setOpacity(.7f);
+        closeBtn.setSize("18px");
+        closeBtn.setOnMouseEntered(e -> closeBtn.setOpacity(1.f));
+        closeBtn.setOnMouseExited(e -> closeBtn.setOpacity(.7f));
+        closeBtn.setOnMouseClicked(e -> System.exit(0));
+        closeBtn.setTranslateX(70f);
 
-        fullScreenButton.setFill(Color.WHITE);
-        fullScreenButton.setOpacity(0.70f);
-        fullScreenButton.setSize("16px");
-        fullScreenButton.setOnMouseEntered(event -> fullScreenButton.setOpacity(1f));
-        fullScreenButton.setOnMouseExited(event -> fullScreenButton.setOpacity(0.7f));
-        fullScreenButton.setOnMouseClicked(event -> {
-            this.panelManager.getStage().setMaximized(!this.panelManager.getStage().isMaximized());
-        });
-        fullScreenButton.setTranslateX(50d);
+        fullscreenBtn.setFill(Color.WHITE);
+        fullscreenBtn.setOpacity(0.70f);
+        fullscreenBtn.setSize("14px");
+        fullscreenBtn.setOnMouseEntered(e -> fullscreenBtn.setOpacity(1.0f));
+        fullscreenBtn.setOnMouseExited(e -> fullscreenBtn.setOpacity(0.7f));
+        fullscreenBtn.setOnMouseClicked(e -> this.panelManager.getStage().setMaximized(!this.panelManager.getStage().isMaximized()));
+        fullscreenBtn.setTranslateX(50.0d);
 
-        minimizeButton.setFill(Color.WHITE);
-        minimizeButton.setOpacity(0.70f);
-        minimizeButton.setSize("16px");
-        minimizeButton.setOnMouseEntered(event -> minimizeButton.setOpacity(1f));
-        minimizeButton.setOnMouseExited(event -> minimizeButton.setOpacity(0.7f));
-        minimizeButton.setOnMouseClicked(event -> this.panelManager.getStage().setIconified(true));
-        minimizeButton.setTranslateX(26d);
+        minimizeBtn.setFill(Color.WHITE);
+        minimizeBtn.setOpacity(0.70f);
+        minimizeBtn.setSize("18px");
+        minimizeBtn.setOnMouseEntered(e -> minimizeBtn.setOpacity(1.0f));
+        minimizeBtn.setOnMouseExited(e -> minimizeBtn.setOpacity(0.7f));
+        minimizeBtn.setOnMouseClicked(e -> this.panelManager.getStage().setIconified(true));
+        minimizeBtn.setTranslateX(26.0d);
 
-        topBarButtons.getChildren().addAll(closeButton, fullScreenButton, minimizeButton);
+        topBarButton.getChildren().addAll(closeBtn, fullscreenBtn, minimizeBtn);
     }
 }

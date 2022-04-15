@@ -10,10 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
-public abstract class Panel implements IPanel, IMovable, ITakePanel {
-
+public abstract class Panel implements IPanel, IMovable, ITakePLace {
     protected final ILogger logger;
-    protected final GridPane layout = new GridPane();
+    protected GridPane layout = new GridPane();
     protected PanelManager panelManager;
 
     public Panel() {
@@ -23,7 +22,7 @@ public abstract class Panel implements IPanel, IMovable, ITakePanel {
     @Override
     public void init(PanelManager panelManager) {
         this.panelManager = panelManager;
-        this.setCanTakeAllSize(this.layout);
+        setCanTakeAllSize(this.layout);
     }
 
     @Override
@@ -33,7 +32,7 @@ public abstract class Panel implements IPanel, IMovable, ITakePanel {
 
     @Override
     public void onShow() {
-        final FadeTransition transition = new FadeTransition(Duration.seconds(1), this.layout);
+        FadeTransition transition = new FadeTransition(Duration.seconds(1), this.layout);
         transition.setFromValue(0);
         transition.setToValue(1);
         transition.setAutoReverse(true);
@@ -41,12 +40,12 @@ public abstract class Panel implements IPanel, IMovable, ITakePanel {
     }
 
     @Override
-    public String getStyleSheetPath() {
-        return null;
-    }
+    public abstract String getName();
 
     @Override
-    public abstract String getName();
+    public String getStylesheetPath() {
+        return null;
+    }
 
     @Override
     public void setLeft(Node node) {
