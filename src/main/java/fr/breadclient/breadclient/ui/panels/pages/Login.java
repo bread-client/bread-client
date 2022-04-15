@@ -27,18 +27,17 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Login extends Panel {
-    GridPane loginCard = new GridPane();
 
-    Saver saver = Launcher.getINSTANCE().getSaver();
-    AtomicBoolean offlineAuth = new AtomicBoolean(false);
-
-    TextField userField = new TextField();
-    PasswordField passwordField = new PasswordField();
-    Label userErrorLabel = new Label();
-    Label passwordErrorLabel = new Label();
-    Button btnLogin = new Button("Connexion");
-    CheckBox authModeChk = new CheckBox("Mode crack");
-    Button msLoginBtn = new Button();
+    private final GridPane loginCard = new GridPane();
+    private final Saver saver = Launcher.getInstance().getSaver();
+    private final AtomicBoolean offlineAuth = new AtomicBoolean(false);
+    private final TextField userField = new TextField();
+    private final PasswordField passwordField = new PasswordField();
+    private final Label userErrorLabel = new Label();
+    private final Label passwordErrorLabel = new Label();
+    private final Button btnLogin = new Button("Connexion");
+    private final CheckBox authModeChk = new CheckBox("Mode crack");
+    private final Button msLoginBtn = new Button();
 
     @Override
     public String getName() {
@@ -57,203 +56,212 @@ public class Login extends Panel {
         // Background
         this.layout.getStyleClass().add("login-layout");
 
-        ColumnConstraints columnConstraints = new ColumnConstraints();
+        final ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setHalignment(HPos.LEFT);
         columnConstraints.setMinWidth(350);
         columnConstraints.setMaxWidth(350);
         this.layout.getColumnConstraints().addAll(columnConstraints, new ColumnConstraints());
-        this.layout.add(loginCard, 0, 0);
+        this.layout.add(this.loginCard, 0, 0);
 
         // Background image
-        GridPane bgImage = new GridPane();
-        setCanTakeAllSize(bgImage);
+        final GridPane bgImage = new GridPane();
+        this.setCanTakeAllSize(bgImage);
         bgImage.getStyleClass().add("bg-image");
         this.layout.add(bgImage, 1, 0);
 
         // Login card
+<<<<<<< HEAD
         setCanTakeAllSize(this.layout);
         loginCard.getStyleClass().add("login-card");
         setRight(loginCard);
         setCenterH(loginCard);
         setCenterV(loginCard);
+=======
+        this.setCanTakeAllSize(this.layout);
+        this.loginCard.getStyleClass().add("login-card");
+        this.setLeft(this.loginCard);
+        this.setCenterH(this.loginCard);
+        this.setCenterV(this.loginCard);
+>>>>>>> edb11bbaba2e6da815600d419a2ae4c854fcb625
 
         /*
          * Login sidebar
          */
+<<<<<<< HEAD
         Label title = new Label("Bread Client");
+=======
+        final Label title = new Label("JavaFX Launcher");
+>>>>>>> edb11bbaba2e6da815600d419a2ae4c854fcb625
         title.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 30f));
         title.getStyleClass().add("login-title");
-        setCenterH(title);
-        setCanTakeAllSize(title);
-        setTop(title);
+        this.setCenterH(title);
+        this.setCanTakeAllSize(title);
+        this.setTop(title);
         title.setTextAlignment(TextAlignment.CENTER);
         title.setTranslateY(30d);
-        loginCard.getChildren().add(title);
+        this.loginCard.getChildren().add(title);
 
         // Username/E-Mail
-        setCanTakeAllSize(userField);
-        setCenterV(userField);
-        setCenterH(userField);
-        userField.setPromptText("Adresse E-Mail");
-        userField.setMaxWidth(300);
-        userField.setTranslateY(-70d);
-        userField.getStyleClass().add("login-input");
-        userField.textProperty().addListener((_a, oldValue, newValue) -> this.updateLoginBtnState(userField, userErrorLabel));
+        this.setCanTakeAllSize(this.userField);
+        this.setCenterV(this.userField);
+        this.setCenterH(this.userField);
+        this.userField.setPromptText("Adresse E-Mail");
+        this.userField.setMaxWidth(300);
+        this.userField.setTranslateY(-70d);
+        this.userField.getStyleClass().add("login-input");
+        this.userField.textProperty().addListener((_a, oldValue, newValue) -> this.updateLoginBtnState(this.userField, this.userErrorLabel));
 
         // User error
-        setCanTakeAllSize(userErrorLabel);
-        setCenterV(userErrorLabel);
-        setCenterH(userErrorLabel);
-        userErrorLabel.getStyleClass().add("login-error");
-        userErrorLabel.setTranslateY(-45d);
-        userErrorLabel.setMaxWidth(280);
-        userErrorLabel.setTextAlignment(TextAlignment.LEFT);
+        this.setCanTakeAllSize(userErrorLabel);
+        this.setCenterV(userErrorLabel);
+        this.setCenterH(userErrorLabel);
+        this.userErrorLabel.getStyleClass().add("login-error");
+        this.userErrorLabel.setTranslateY(-45d);
+        this.userErrorLabel.setMaxWidth(280);
+        this.userErrorLabel.setTextAlignment(TextAlignment.LEFT);
 
         // Password
-        setCanTakeAllSize(passwordField);
-        setCenterV(passwordField);
-        setCenterH(passwordField);
-        passwordField.setPromptText("Mot de passe");
-        passwordField.setMaxWidth(300);
-        passwordField.setTranslateY(-15d);
-        passwordField.getStyleClass().add("login-input");
-        passwordField.textProperty().addListener((_a, oldValue, newValue) -> this.updateLoginBtnState(passwordField, passwordErrorLabel));
+        this.setCanTakeAllSize(this.passwordField);
+        this.setCenterV(this.passwordField);
+        this.setCenterH(this.passwordField);
+        this.passwordField.setPromptText("Mot de passe");
+        this.passwordField.setMaxWidth(300);
+        this.passwordField.setTranslateY(-15d);
+        this.passwordField.getStyleClass().add("login-input");
+        this.passwordField.textProperty().addListener((_a, oldValue, newValue) -> this.updateLoginBtnState(this.passwordField, this.passwordErrorLabel));
 
         // User error
-        setCanTakeAllSize(passwordErrorLabel);
-        setCenterV(passwordErrorLabel);
-        setCenterH(passwordErrorLabel);
-        passwordErrorLabel.getStyleClass().add("login-error");
-        passwordErrorLabel.setTranslateY(10d);
-        passwordErrorLabel.setMaxWidth(280);
-        passwordErrorLabel.setTextAlignment(TextAlignment.LEFT);
+        this.setCanTakeAllSize(this.passwordErrorLabel);
+        this.setCenterV(this.passwordErrorLabel);
+        this.setCenterH(this.passwordErrorLabel);
+        this.passwordErrorLabel.getStyleClass().add("login-error");
+        this.passwordErrorLabel.setTranslateY(10d);
+        this.passwordErrorLabel.setMaxWidth(280);
+        this.passwordErrorLabel.setTextAlignment(TextAlignment.LEFT);
 
         // Login button
-        setCanTakeAllSize(btnLogin);
-        setCenterV(btnLogin);
-        setCenterH(btnLogin);
-        btnLogin.setDisable(true);
-        btnLogin.setMaxWidth(300);
-        btnLogin.setTranslateY(40d);
-        btnLogin.getStyleClass().add("login-log-btn");
-        btnLogin.setOnMouseClicked(e -> this.authenticate(userField.getText(), passwordField.getText()));
+        this.setCanTakeAllSize(this.btnLogin);
+        this.setCenterV(this.btnLogin);
+        this.setCenterH(this.btnLogin);
+        this.btnLogin.setDisable(true);
+        this.btnLogin.setMaxWidth(300);
+        this.btnLogin.setTranslateY(40d);
+        this.btnLogin.getStyleClass().add("login-log-btn");
+        this.btnLogin.setOnMouseClicked(e -> this.authenticate(this.userField.getText(), this.passwordField.getText()));
 
-        setCanTakeAllSize(authModeChk);
-        setCenterV(authModeChk);
-        setCenterH(authModeChk);
-        authModeChk.getStyleClass().add("login-mode-chk");
-        authModeChk.setMaxWidth(300);
-        authModeChk.setTranslateY(85d);
-        authModeChk.selectedProperty().addListener((e, old, newValue) -> {
-            offlineAuth.set(newValue);
-            passwordField.setDisable(newValue);
-            if (newValue) {
-                userField.setPromptText("Pseudo");
-                passwordField.clear();
+        this.setCanTakeAllSize(this.authModeChk);
+        this.setCenterV(this.authModeChk);
+        this.setCenterH(this.authModeChk);
+        this.authModeChk.getStyleClass().add("login-mode-chk");
+        this.authModeChk.setMaxWidth(300);
+        this.authModeChk.setTranslateY(85d);
+        this.authModeChk.selectedProperty().addListener((e, old, newValue) -> {
+            this.offlineAuth.set(newValue);
+            this.passwordField.setDisable(newValue);
+            if(newValue) {
+                this.userField.setPromptText("Pseudo");
+                this.passwordField.clear();
             } else {
-                userField.setPromptText("Adresse E-Mail");
+                this.userField.setPromptText("Adresse E-Mail");
             }
-
-            btnLogin.setDisable(!(userField.getText().length() > 0 && (offlineAuth.get() || passwordField.getText().length() > 0)));
+            this.btnLogin.setDisable(!(this.userField.getText().length() > 0 && (this.offlineAuth.get() || this.passwordField.getText().length() > 0)));
         });
 
-        Separator separator = new Separator();
-        setCanTakeAllSize(separator);
-        setCenterH(separator);
-        setCenterV(separator);
+        final Separator separator = new Separator();
+        this.setCanTakeAllSize(separator);
+        this.setCenterH(separator);
+        this.setCenterV(separator);
         separator.getStyleClass().add("login-separator");
         separator.setMaxWidth(300);
         separator.setTranslateY(110d);
 
         // Login with label
-        Label loginWithLabel = new Label("Ou se connecter avec:".toUpperCase());
-        setCanTakeAllSize(loginWithLabel);
-        setCenterV(loginWithLabel);
-        setCenterH(loginWithLabel);
+        final Label loginWithLabel = new Label("Ou se connecter avec:".toUpperCase());
+        this.setCanTakeAllSize(loginWithLabel);
+        this.setCenterV(loginWithLabel);
+        this.setCenterH(loginWithLabel);
         loginWithLabel.setFont(Font.font(loginWithLabel.getFont().getFamily(), FontWeight.BOLD, FontPosture.REGULAR, 14d));
         loginWithLabel.getStyleClass().add("login-with-label");
         loginWithLabel.setTranslateY(130d);
         loginWithLabel.setMaxWidth(280d);
 
         // Microsoft login button
-        ImageView view = new ImageView(new Image("images/microsoft.png"));
+        final ImageView view = new ImageView(new Image("images/microsoft.png"));
         view.setPreserveRatio(true);
         view.setFitHeight(30d);
-        setCanTakeAllSize(msLoginBtn);
-        setCenterH(msLoginBtn);
-        setCenterV(msLoginBtn);
-        msLoginBtn.getStyleClass().add("ms-login-btn");
-        msLoginBtn.setMaxWidth(300);
-        msLoginBtn.setTranslateY(165d);
-        msLoginBtn.setGraphic(view);
-        msLoginBtn.setOnMouseClicked(e -> this.authenticateMS());
+        this.setCanTakeAllSize(this.msLoginBtn);
+        this.setCenterH(this.msLoginBtn);
+        this.setCenterV(this.msLoginBtn);
+        this.msLoginBtn.getStyleClass().add("ms-login-btn");
+        this.msLoginBtn.setMaxWidth(300);
+        this.msLoginBtn.setTranslateY(165d);
+        this.msLoginBtn.setGraphic(view);
+        this.msLoginBtn.setOnMouseClicked(e -> this.authenticateMS());
 
-        loginCard.getChildren().addAll(userField, userErrorLabel, passwordField, passwordErrorLabel, authModeChk, btnLogin, separator, loginWithLabel, msLoginBtn);
+        this.loginCard.getChildren().addAll(this.userField, this.userErrorLabel, this.passwordField, this.passwordErrorLabel, this.authModeChk, this.btnLogin, separator, loginWithLabel, this.msLoginBtn);
     }
 
     public void updateLoginBtnState(TextField textField, Label errorLabel) {
-        if (offlineAuth.get() && textField == passwordField) return;
+        if(this.offlineAuth.get() && textField == this.passwordField) return;
 
-        if (textField.getText().length() == 0) {
+        if(textField.getText().length() == 0) {
             errorLabel.setText("Le champ ne peut être vide");
         } else {
             errorLabel.setText("");
         }
-
-        btnLogin.setDisable(!(userField.getText().length() > 0 && (offlineAuth.get() || passwordField.getText().length() > 0)));
+        this.btnLogin.setDisable(!(this.userField.getText().length() > 0 && (this.offlineAuth.get() || this.passwordField.getText().length() > 0)));
     }
 
     public void authenticate(String user, String password) {
-        if (!offlineAuth.get()) {
-            Authenticator authenticator = new Authenticator(Authenticator.MOJANG_AUTH_URL, AuthPoints.NORMAL_AUTH_POINTS);
+        if(!offlineAuth.get()) {
+            final Authenticator authenticator = new Authenticator(Authenticator.MOJANG_AUTH_URL, AuthPoints.NORMAL_AUTH_POINTS);
 
             try {
-                AuthResponse response = authenticator.authenticate(AuthAgent.MINECRAFT, user, password, null);
+                final AuthResponse response = authenticator.authenticate(AuthAgent.MINECRAFT, user, password, null);
 
-                saver.set("accessToken", response.getAccessToken());
-                saver.set("clientToken", response.getClientToken());
-                saver.save();
+                this.saver.set("accessToken", response.getAccessToken());
+                this.saver.set("clientToken", response.getClientToken());
+                this.saver.save();
 
-                AuthInfos infos = new AuthInfos(
+                final AuthInfos infos = new AuthInfos(
                         response.getSelectedProfile().getName(),
                         response.getAccessToken(),
                         response.getClientToken(),
                         response.getSelectedProfile().getId()
                 );
 
-                Launcher.getINSTANCE().setAuthInfos(infos);
+                Launcher.getInstance().setAuthInfos(infos);
 
                 this.logger.info("Hello " + infos.getUsername());
 
-                panelManager.showPanel(new App());
-            } catch (AuthenticationException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                this.panelManager.showPanel(new App());
+            } catch(AuthenticationException e) {
+                final Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setHeaderText("Une erreur est survenu lors de la connexion");
                 alert.setContentText(e.getMessage());
                 alert.show();
             }
         } else {
-            AuthInfos infos = new AuthInfos(
-                    userField.getText(),
+            final AuthInfos infos = new AuthInfos(
+                    this.userField.getText(),
                     UUID.randomUUID().toString(),
                     UUID.randomUUID().toString()
             );
-            saver.set("offline-username", infos.getUsername());
-            saver.save();
-            Launcher.getINSTANCE().setAuthInfos(infos);
-
+            this.saver.set("offline-username", infos.getUsername());
+            this.saver.save();
+            Launcher.getInstance().setAuthInfos(infos);
             this.logger.info("Hello " + infos.getUsername());
-
-            panelManager.showPanel(new App());
+            this.panelManager.showPanel(new App());
         }
     }
 
     public void authenticateMS() {
-        MicrosoftAuthenticator authenticator = new MicrosoftAuthenticator();
+        final MicrosoftAuthenticator authenticator = new MicrosoftAuthenticator();
+
         authenticator.loginWithAsyncWebview().whenComplete((response, error) -> {
-            if (error != null) {
-                Launcher.getINSTANCE().getLogger().err(error.toString());
+            if(error != null) {
+                Launcher.getInstance().getLogger().err(error.toString());
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setContentText(error.getMessage());
@@ -261,10 +269,10 @@ public class Login extends Panel {
                 return;
             }
 
-            saver.set("msAccessToken", response.getAccessToken());
-            saver.set("msRefreshToken", response.getRefreshToken());
-            saver.save();
-            Launcher.getINSTANCE().setAuthInfos(new AuthInfos(
+            this.saver.set("msAccessToken", response.getAccessToken());
+            this.saver.set("msRefreshToken", response.getRefreshToken());
+            this.saver.save();
+            Launcher.getInstance().setAuthInfos(new AuthInfos(
                     response.getProfile().getName(),
                     response.getAccessToken(),
                     response.getProfile().getId()
@@ -272,7 +280,7 @@ public class Login extends Panel {
             this.logger.info("Hello " + response.getProfile().getName());
 
             Platform.runLater(() -> {
-                panelManager.showPanel(new App());
+                this.panelManager.showPanel(new App());
             });
         });
     }

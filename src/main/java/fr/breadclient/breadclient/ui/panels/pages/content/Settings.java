@@ -18,8 +18,9 @@ import oshi.SystemInfo;
 import oshi.hardware.GlobalMemory;
 
 public class Settings extends ContentPanel {
-    private final Saver saver = Launcher.getINSTANCE().getSaver();
-    GridPane contentPane = new GridPane();
+
+    private final Saver saver = Launcher.getInstance().getSaver();
+    private final GridPane contentPane = new GridPane();
 
     @Override
     public String getName() {
@@ -41,12 +42,12 @@ public class Settings extends ContentPanel {
         setCanTakeAllSize(this.layout);
 
         // Content
-        contentPane.getStyleClass().add("content-pane");
-        setCanTakeAllSize(contentPane);
-        this.layout.getChildren().add(contentPane);
+        this.contentPane.getStyleClass().add("content-pane");
+        setCanTakeAllSize(this.contentPane);
+        this.layout.getChildren().add(this.contentPane);
 
         // Titre
-        Label title = new Label("Paramètres");
+        final Label title = new Label("Paramètres");
         title.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 25f));
         title.getStyleClass().add("settings-title");
         setLeft(title);
@@ -55,10 +56,10 @@ public class Settings extends ContentPanel {
         title.setTextAlignment(TextAlignment.LEFT);
         title.setTranslateY(40d);
         title.setTranslateX(25d);
-        contentPane.getChildren().add(title);
+        this.contentPane.getChildren().add(title);
 
         // RAM
-        Label ramLabel = new Label("Mémoire max");
+        final Label ramLabel = new Label("Mémoire max");
         ramLabel.getStyleClass().add("settings-labels");
         setLeft(ramLabel);
         setCanTakeAllSize(ramLabel);
@@ -66,13 +67,13 @@ public class Settings extends ContentPanel {
         ramLabel.setTextAlignment(TextAlignment.LEFT);
         ramLabel.setTranslateX(25d);
         ramLabel.setTranslateY(100d);
-        contentPane.getChildren().add(ramLabel);
+        this.contentPane.getChildren().add(ramLabel);
 
         // RAM Slider
-        SystemInfo systemInfo = new SystemInfo();
+        final SystemInfo systemInfo = new SystemInfo();
         GlobalMemory memory = systemInfo.getHardware().getMemory();
 
-        ComboBox<String> comboBox = new ComboBox<>();
+        final ComboBox<String> comboBox = new ComboBox<>();
         comboBox.getStyleClass().add("ram-selector");
         for(int i = 512; i <= Math.ceil(memory.getTotal() / Math.pow(1024, 2)); i+=512) {
             comboBox.getItems().add(i/1024.0+" Go");
@@ -80,45 +81,53 @@ public class Settings extends ContentPanel {
 
         int val = 1024;
         try {
-            if (saver.get("maxRam") != null) {
-                val = Integer.parseInt(saver.get("maxRam"));
+            if(this.saver.get("maxRam") != null) {
+                val = Integer.parseInt(this.saver.get("maxRam"));
             } else {
                 throw new NumberFormatException();
             }
-        } catch (NumberFormatException error) {
-            saver.set("maxRam", String.valueOf(val));
-            saver.save();
+        } catch(NumberFormatException error) {
+            this.saver.set("maxRam", String.valueOf(val));
+            this.saver.save();
         }
 
-        if (comboBox.getItems().contains(val/1024.0+" Go")) {
+        if(comboBox.getItems().contains(val/1024.0+" Go")) {
             comboBox.setValue(val / 1024.0 + " Go");
         } else {
             comboBox.setValue("1.0 Go");
         }
 
-        setLeft(comboBox);
-        setCanTakeAllSize(comboBox);
-        setTop(comboBox);
+        this.setLeft(comboBox);
+        this.setCanTakeAllSize(comboBox);
+        this.setTop(comboBox);
         comboBox.setTranslateX(35d);
         comboBox.setTranslateY(130d);
-        contentPane.getChildren().add(comboBox);
+        this.contentPane.getChildren().add(comboBox);
 
         /*
          * Save Button
          */
-        Button saveBtn = new Button("Enregistrer");
+        final Button saveBtn = new Button("Enregistrer");
         saveBtn.getStyleClass().add("save-btn");
-        FontAwesomeIconView iconView = new FontAwesomeIconView(FontAwesomeIcon.SAVE);
+        final FontAwesomeIconView iconView = new FontAwesomeIconView(FontAwesomeIcon.SAVE);
         iconView.getStyleClass().add("save-icon");
         saveBtn.setGraphic(iconView);
-        setCanTakeAllSize(saveBtn);
-        setBottom(saveBtn);
-        setCenterH(saveBtn);
+        this.setCanTakeAllSize(saveBtn);
+        this.setBottom(saveBtn);
+        this.setCenterH(saveBtn);
         saveBtn.setOnMouseClicked(e -> {
             double _val = Double.parseDouble(comboBox.getValue().replace(" Go", ""));
             _val *= 1024;
-            saver.set("maxRam", String.valueOf((int) _val));
+            this.saver.set("maxRam", String.valueOf((int) _val));
         });
-        contentPane.getChildren().add(saveBtn);
+        this.contentPane.getChildren().add(saveBtn);
+    }
+
+    public Saver getSaver() {
+        return saver;
+    }
+
+    public GridPane getContentPane() {
+        return contentPane;
     }
 }

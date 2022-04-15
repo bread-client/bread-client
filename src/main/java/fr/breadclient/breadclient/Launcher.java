@@ -23,28 +23,23 @@ import java.nio.file.Path;
 import java.util.UUID;
 
 public class Launcher extends Application {
+
     private static Launcher INSTANCE;
     private final ILogger logger;
     private final Path launcherDir = GameDirGenerator.createGameDir("bread-client", true);
     private final Saver saver;
     private PanelManager panelManager;
-    private AuthInfos authInfos = null;
+    private AuthInfos authInfos;
 
     public Launcher() {
         INSTANCE = this;
-        this.logger = new Logger("[BreadClient]", this.launcherDir.resolve("launcher.log"));
-        if (!this.launcherDir.toFile().exists()) {
-            if (!this.launcherDir.toFile().mkdir()) {
+        this.logger = new Logger("[bread-client]", this.launcherDir.resolve("launcher.log"));
+        if(!this.launcherDir.toFile().exists())
+            if(!this.launcherDir.toFile().mkdir())
                 this.logger.err("Unable to create launcher folder");
-            }
-        }
 
-        saver = new Saver(this.launcherDir.resolve("config.properties"));
-        saver.load();
-    }
-
-    public static Launcher getINSTANCE() {
-        return INSTANCE;
+        this.saver = new Saver(this.launcherDir.resolve("config.properties"));
+        this.saver.load();
     }
 
     @Override
@@ -53,9 +48,8 @@ public class Launcher extends Application {
         this.panelManager = new PanelManager(this, stage);
         this.panelManager.init();
 
-        if (this.isUserAlreadyLoggedIn()) {
-            logger.info("Hello " + authInfos.getUsername());
-
+        if(this.isUserAlreadyLoggedIn()) {
+            this.logger.info("Hello " + this.authInfos.getUsername());
             this.panelManager.showPanel(new App());
         } else {
             this.panelManager.showPanel(new Login());
@@ -63,56 +57,54 @@ public class Launcher extends Application {
     }
 
     public boolean isUserAlreadyLoggedIn() {
-        if (saver.get("accessToken") != null && saver.get("clientToken") != null) {
-            Authenticator authenticator = new Authenticator(Authenticator.MOJANG_AUTH_URL, AuthPoints.NORMAL_AUTH_POINTS);
+        if(this.saver.get("accessToken") != null && this.saver.get("clientToken") != null) {
+            final Authenticator authenticator = new Authenticator(Authenticator.MOJANG_AUTH_URL, AuthPoints.NORMAL_AUTH_POINTS);
 
             try {
-                RefreshResponse response = authenticator.refresh(saver.get("accessToken"), saver.get("clientToken"));
-                saver.set("accessToken", response.getAccessToken());
-                saver.set("clientToken", response.getClientToken());
-                saver.save();
+                final RefreshResponse response = authenticator.refresh(this.saver.get("accessToken"), this.saver.get("clientToken"));
+                this.saver.set("accessToken", response.getAccessToken());
+                this.saver.set("clientToken", response.getClientToken());
+                this.saver.save();
                 this.setAuthInfos(new AuthInfos(
                         response.getSelectedProfile().getName(),
                         response.getAccessToken(),
                         response.getClientToken(),
                         response.getSelectedProfile().getId()
                 ));
-
                 return true;
-            } catch (AuthenticationException ignored) {
-                saver.remove("accessToken");
-                saver.remove("clientToken");
-                saver.save();
+            } catch(AuthenticationException ignored) {
+                this.saver.remove("accessToken");
+                this.saver.remove("clientToken");
+                this.saver.save();
             }
-        } else if (saver.get("msAccessToken") != null && saver.get("msRefreshToken") != null) {
+        } else if(this.saver.get("msAccessToken") != null && this.saver.get("msRefreshToken") != null) {
             try {
-                MicrosoftAuthenticator authenticator = new MicrosoftAuthenticator();
-                MicrosoftAuthResult response = authenticator.loginWithRefreshToken(saver.get("msRefreshToken"));
+                final MicrosoftAuthenticator authenticator = new MicrosoftAuthenticator();
+                final MicrosoftAuthResult response = authenticator.loginWithRefreshToken(this.saver.get("msRefreshToken"));
 
-                saver.set("msAccessToken", response.getAccessToken());
-                saver.set("msRefreshToken", response.getRefreshToken());
-                saver.save();
+                this.saver.set("msAccessToken", response.getAccessToken());
+                this.saver.set("msRefreshToken", response.getRefreshToken());
+                this.saver.save();
                 this.setAuthInfos(new AuthInfos(
                         response.getProfile().getName(),
                         response.getAccessToken(),
                         response.getProfile().getId()
                 ));
                 return true;
-            } catch (MicrosoftAuthenticationException e) {
-                saver.remove("msAccessToken");
-                saver.remove("msRefreshToken");
-                saver.save();
+            } catch(MicrosoftAuthenticationException e) {
+                this.saver.remove("msAccessToken");
+                this.saver.remove("msRefreshToken");
+                this.saver.save();
             }
-        } else if (saver.get("offline-username") != null) {
-            this.authInfos = new AuthInfos(saver.get("offline-username"), UUID.randomUUID().toString(), UUID.randomUUID().toString());
+        } else if(this.saver.get("offline-username") != null) {
+            this.authInfos = new AuthInfos(this.saver.get("offline-username"), UUID.randomUUID().toString(), UUID.randomUUID().toString());
             return true;
         }
-
         return false;
     }
 
-    public AuthInfos getAuthInfos() {
-        return authInfos;
+    public static Launcher getInstance() {
+        return INSTANCE;
     }
 
     public void setAuthInfos(AuthInfos authInfos) {
@@ -123,12 +115,20 @@ public class Launcher extends Application {
         return logger;
     }
 
+    public Path getLauncherDir() {
+        return launcherDir;
+    }
+
     public Saver getSaver() {
         return saver;
     }
 
-    public Path getLauncherDir() {
-        return launcherDir;
+    public PanelManager getPanelManager() {
+        return panelManager;
+    }
+
+    public AuthInfos getAuthInfos() {
+        return authInfos;
     }
 
     @Override
