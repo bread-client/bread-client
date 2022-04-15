@@ -4,7 +4,7 @@ import javafx.application.Application;
 
 import javax.swing.*;
 
-public class Main {
+public class BreadClient {
     public static void main(String[] args) {
         try {
             Class.forName("javafx.application.Application");
