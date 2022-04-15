@@ -31,6 +31,7 @@ public class Launcher extends Application {
             this.launcherDirectory.mkdir();
     }
 
+    @Override
     public void start(Stage stage) throws Exception {
         this.logger.info("Starting Bread Client");
         this.panelManager = new PanelManager(this, stage);
