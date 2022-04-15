@@ -1,19 +1,21 @@
 .app-layout {
-    -fx-background: rgb(10, 12, 12);
+    -fx-background: #1e1e1e;
 }
 
 .sidemenu {
-    -fx-background-color: white;
+    -fx-background-color: #1e1e1e;
 }
 
 .bg-image {
-    -fx-background-image: url("/images/background.png");
+    -fx-background-color: linear-gradient(to right bottom, #61D8DE, #E839F6);
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
     -fx-background-position: center center;
     -fx-background-repeat: stretch;
+
 }
 
 .home-title {
-    -fx-text-fill: rgb(20, 25, 25);
+    -fx-text-fill: white;
 }
 
 .sidemenu-nav-btn {
@@ -25,10 +27,13 @@
     -fx-max-height: 40px;
     -fx-max-width: 350px;
     -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-fill: white;
 }
 
 .sidemenu-nav-btn.button {
     -fx-alignment: center-left;
+    -fx-fill: white;
 }
 
 .sidemenu-nav-btn:hover {
@@ -36,15 +41,18 @@
 }
 
 .sidemenu-nav-btn.active {
-    -fx-border-color: #85AE51;
+    -fx-border-color: linear-gradient(to right bottom, #61D8DE, #E839F6);
+    -fx-border-width: 0 0 1 2px;
+    -fx-fill: white;
 }
 
 .nav-content {
-    -fx-background-color: rgba(240, 240, 240, 0.4);
+    -fx-background-color: linear-gradient(to right bottom, #61D8DE, #E839F6);
+    -fx-fill: white;
 }
 
 .user-pane {
-    -fx-background-color: #85AE51;
+    -fx-background-color: #1e1e1e;
 }
 
 .logout-btn {

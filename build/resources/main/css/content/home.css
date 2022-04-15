@@ -1,12 +1,12 @@
 .box-pane {
-    -fx-background-color: #eee;
+    -fx-background-color: #1e1e1e;
 }
 
 .play-btn {
     -fx-background-radius: 10px;
     -fx-font-size: 16px;
     -fx-text-fill: #F5F5F5;
-    -fx-background-color: #85AE51;
+    -fx-background-color: #1e1e1e;
 }
 
 .play-icon {
@@ -14,7 +14,7 @@
 }
 
 .play-btn:hover {
-    -fx-background-color: #98BB6D;
+    -fx-background-color: black;
 }
 
 .download-progress {
@@ -26,13 +26,13 @@
 }
 
 .download-progress > .bar {
-    -fx-background-color: #85AE51;
+    -fx-background-color: #1e1e1e;
     -fx-background-insets: 0;
     -fx-background-radius: 30px;
 }
 
 .download-progress > .track {
-    -fx-background-color: white;
+    -fx-background-color: linear-gradient(to right bottom, #61D8DE, #E839F6);
     -fx-background-insets: 0;
     -fx-background-radius: 30px;
 }

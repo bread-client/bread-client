@@ -45,8 +45,8 @@ public class TopBar extends Panel {
         this.layout.getChildren().add(imageView);
 
         // TopBar: center
-        Label title = new Label("JavaFx Launcher");
-        title.setFont(Font.font("Consolas", FontWeight.BOLD, FontPosture.REGULAR, 18f));
+        Label title = new Label("Bread Client - Early access");
+        title.setFont(Font.font("Consolas", FontWeight.NORMAL, FontPosture.REGULAR, 18f));
         title.setStyle("-fx-text-fill: white;");
         setCenterH(title);
         this.layout.getChildren().add(title);

@@ -44,6 +44,9 @@ application {
     getMainClass().set('fr.breadclient.breadclient.Main')
 }
 
+compileJava {
+    options.encoding = "UTF-8"
+}
 
 test {
     useJUnitPlatform()
