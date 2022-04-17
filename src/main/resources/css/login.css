@@ -84,3 +84,13 @@
 .login-mode-chk:selected .box .mark {
     visibility: hidden;
 }
+
+/* @keyframes crgb {
+  from {
+    linear-gradient(to right bottom, #61D8DE, #E839F6)
+  }
+
+  to {
+    linear-gradient(to right bottom, #00ff22, #9000ff)
+  }
+} */
