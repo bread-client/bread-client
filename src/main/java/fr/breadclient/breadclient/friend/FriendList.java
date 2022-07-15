@@ -21,6 +21,7 @@ public class FriendList {
     public void loadFriends(){
         // Charger les amis enregistrés dans un fichier yml ou autre
         // Si le fichier n'existe pas, créer le fichier
+        // A faire avec la lib properties-data.jar
     }
 
 }
