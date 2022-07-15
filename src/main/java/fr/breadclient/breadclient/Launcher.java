@@ -30,6 +30,7 @@ public class Launcher extends Application {
     private final Saver saver;
     private PanelManager panelManager;
     private AuthInfos authInfos;
+    private FriendList friend = new FriendList()
 
     public Launcher() {
         INSTANCE = this;
