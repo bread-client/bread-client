@@ -1,5 +1,6 @@
 package fr.breadclient.breadclient;
 
+import fr.breadclient.breadclient.friend.FriendList;
 import fr.breadclient.breadclient.ui.PanelManager;
 import fr.breadclient.breadclient.ui.panels.pages.App;
 import fr.breadclient.breadclient.ui.panels.pages.Login;
@@ -30,7 +31,7 @@ public class Launcher extends Application {
     private final Saver saver;
     private PanelManager panelManager;
     private AuthInfos authInfos;
-    private FriendList friend = new FriendList()
+    private FriendList friend = new FriendList();
 
     public Launcher() {
         INSTANCE = this;
