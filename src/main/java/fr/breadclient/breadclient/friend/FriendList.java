@@ -10,7 +10,7 @@ public class FriendList {
 
     public ArrayList<String> friends = new ArrayList<String>();
 
-    public void getFriends(){
+    public ArrayList<String> getFriends(){
         return friends;
     }
 

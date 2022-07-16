@@ -20,6 +20,6 @@ public class MinecraftInfos {
             "20210115.111550"
     );
 
-    public static final String CURSE_MODS_LIST_URL = "json/mods_list.json";
-    public static final String MODS_LIST_URL = "json/mods_list.json";
+    public static final String CURSE_MODS_LIST_URL = "https://stage-soren.000webhostapp.com/mods_list.json";
+    public static final String MODS_LIST_URL = "https://stage-soren.000webhostapp.com/mods_list.json";
 }
